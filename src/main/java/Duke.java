@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         // Declare an Console interface
         Console console = new CLIConsole();
 
@@ -16,98 +16,146 @@ public class Duke {
         ArrayList<Task> tasks = new ArrayList<>();
 
         // Read Eval Print Loop
-replLoop:
+        replLoop:
         while (sc.hasNextLine()) {
-            // Read the next line
-            String line = sc.nextLine();
+            try {
+                // Read the next line
+                String line = sc.nextLine().trim();
 
-            // Get all commands by splitting on a space delimiter
-            String[] commands = line.split(" ");
+                // Get all commands by splitting on a whitespaces delimiter
+                String[] commands = line.split("\\s+");
 
-            // Declaring variables for use in switch statement
-            String[] details;
-            Task newTask;
+                // If there is no input, wait for another input
+                if (commands.length == 0) {
+                    continue;
+                }
 
-            // First command
-            String command = commands[0];
-            switch(command) {
-                case "bye":
-                    // Print a message before closing Duke
-                    console.print("Bye. Hope to see you again soon!");
-                    break replLoop;
-                case "done":
-                    // Get the index of the Task in the list of tasks
-                    int index = Integer.parseInt(commands[1]) - 1;
+                // Declaring variables for use in switch statement
+                String[] details;
+                Task newTask;
 
-                    // Retrieve the task and mark it as done
-                    tasks.get(index).markAsDone();
+                // First command
+                String command = commands[0];
+                switch(command) {
+                    case "bye":
+                        // Throw a DukeException if there are arguments to the command
+                        if (commands.length != 1) {
+                            throw new DukeException("☹ OOPS!!! There are unknown arguments for this command.");
+                        }
 
-                    // Print a message confirming that the task is marked as done
-                    console.print(
+                        // Print a message before closing Duke
+                        console.print("Bye. Hope to see you again soon!");
+                        break replLoop;
+                    case "done":
+                        // Throw a DukeException if there is none or more than 1 argument
+                        if (commands.length < 2) {
+                            throw new DukeException("☹ OOPS!!! Insufficient arguments for this command.");
+                        } else if (commands.length > 2) {
+                            throw new DukeException("☹ OOPS!!! There are unknown arguments for this command.");
+                        }
+
+                        // Get the index of the Task in the list of tasks
+                        int index = Integer.parseInt(commands[1]) - 1;
+
+                        // Retrieve the task and mark it as done
+                        tasks.get(index).markAsDone();
+
+                        // Print a message confirming that the task is marked as done
+                        console.print(
                             "Nice! I've marked this task as done: ",
                             tasks.get(index).toString()
-                            );
-                    break;
-                case "list":
-                    // Print the list of tasks
-                    printTasks(tasks, console);
-                    break;
-                case "todo":
-                    // Split the line by a regex and store the information in the details
-                    details = line.split("todo ");
+                        );
+                        break;
+                    case "list":
+                        // Throw a DukeException if there are arguments to the command
+                        if (commands.length != 1) {
+                            throw new DukeException("☹ OOPS!!! There are unknown arguments for this command.");
+                        }
 
-                    // Create a new task using the information stored in details
-                    newTask = new TodoTask(details[1]);
+                        // Print the list of tasks
+                        printTasks(tasks, console);
+                        break;
+                    case "todo":
+                        // Throw a DukeException if there is no input
+                        if (line.equals("todo")) {
+                            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                        }
 
-                    // Add the new task to the list of tasks
-                    tasks.add(newTask);
+                        // Split the line by a regex and store the information in the details
+                        details = line.split("todo\\s*", 2);
 
-                    // Print a message confirming the addition of the task
-                    console.print(
+                        // Create a new task using the information stored in details
+                        newTask = new TodoTask(details[1]);
+
+                        // Add the new task to the list of tasks
+                        tasks.add(newTask);
+
+                        // Print a message confirming the addition of the task
+                        console.print(
                             "Got it. I've added this task:",
                             newTask.toString(),
                             "Now you have " + tasks.size() + " tasks in the list."
-                            );
-                    break;
-                case "deadline":
-                    // Split the line by a regex and store the information in the details
-                    details = line.split("deadline | /by ");
+                        );
+                        break;
+                    case "deadline":
+                        // Throw a DukeException if there is no input
+                        if (line.equals("deadline")) {
+                            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                        }
 
-                    // Create a new task using the information stored in details
-                    newTask = new DeadlineTask(details[1], details[2]);
+                        // Split the line by a regex and store the information in the details
+                        details = line.split("deadline\\s*", 2)[1].split("\\s+/by\\s+", 2);
 
-                    // Add the new task to the list of tasks
-                    tasks.add(newTask);
+                        // Throw a DukeException if input is invalid
+                        if (details.length < 2 || details[0].isEmpty() || details[1].isEmpty()) {
+                            throw new DukeException("☹ OOPS!!! The description or the deadline for this task is empty.");
+                        }
 
-                    // Print a message confirming the addition of the task
-                    console.print(
+                        // Create a new task using the information stored in details
+                        newTask = new DeadlineTask(details[0], details[1]);
+
+                        // Add the new task to the list of tasks
+                        tasks.add(newTask);
+
+                        // Print a message confirming the addition of the task
+                        console.print(
                             "Got it. I've added this task:",
                             newTask.toString(),
                             "Now you have " + tasks.size() + " tasks in the list."
-                            );
-                    break;
-                case "event":
-                    // Split the line by a regex and store the information in the details
-                    details = line.split("event | /at ");
+                        );
+                        break;
+                    case "event":
+                        // Throw a DukeException if there is no input
+                        if (line.equals("event")) {
+                            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                        }
 
-                    // Create a new task using the information stored in details
-                    newTask = new EventTask(details[1], details[2]);
+                        // Split the line by a regex and store the information in the details
+                        details = line.split("event\\s*", 2)[1].split("\\s+/at\\s+", 2);
 
-                    // Add the new task to the list of tasks
-                    tasks.add(newTask);
+                        // Throw a DukeException if input is invalid
+                        if (details.length < 2 || details[0].isEmpty() || details[1].isEmpty()) {
+                            throw new DukeException("☹ OOPS!!! The description or the date & time for this task is empty.");
+                        }
 
-                    // Print a message confirming the addition of the task
-                    console.print(
+                        // Create a new task using the information stored in details
+                        newTask = new EventTask(details[0], details[1]);
+
+                        // Add the new task to the list of tasks
+                        tasks.add(newTask);
+
+                        // Print a message confirming the addition of the task
+                        console.print(
                             "Got it. I've added this task:",
                             newTask.toString(),
                             "Now you have " + tasks.size() + " tasks in the list."
-                            );
-                    break;
-                default:
-                    // Add line to stored texts
-                    tasks.add(new Task(line));
-                    console.print("added: " + line);
-                    break;
+                        );
+                        break;
+                    default:
+                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException e) {
+                console.print(e.getMessage());
             }
         }
     }
