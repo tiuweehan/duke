@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Duke {
@@ -33,32 +34,41 @@ public class Duke {
                 // Declaring variables for use in switch statement
                 String[] details;
                 Task newTask;
+                int index;
 
                 // First command
                 String command = commands[0];
                 switch(command) {
                     case "bye":
-                        // Throw a DukeException if there are arguments to the command
-                        if (commands.length != 1) {
-                            throw new DukeException("☹ OOPS!!! There are unknown arguments for this command.");
-                        }
+                        // Throw a DukeException if there are wrong number of arguments for the command
+                        checkIfCorrectNumberOfArguments(commands, 0);
 
                         // Print a message before closing Duke
                         console.print("Bye. Hope to see you again soon!");
                         break replLoop;
+                    case "list":
+                        // Throw a DukeException if there are wrong number of arguments for the command
+                        checkIfCorrectNumberOfArguments(commands, 0);
+
+                        // Print the list of tasks
+                        printTasks(tasks, console);
+                        break;
                     case "done":
-                        // Throw a DukeException if there is none or more than 1 argument
-                        if (commands.length < 2) {
-                            throw new DukeException("☹ OOPS!!! Insufficient arguments for this command.");
-                        } else if (commands.length > 2) {
-                            throw new DukeException("☹ OOPS!!! There are unknown arguments for this command.");
+                        // Throw a DukeException if there are wrong number of arguments for the command
+                        checkIfCorrectNumberOfArguments(commands, 1);
+
+                        // Get the index of the task in the list of tasks and retrieve the task
+                        // Throw a DukeException if the argument is not a number or if there is no task at given index.
+                        try {
+                            index = Integer.parseInt(commands[1]) - 1;
+                            tasks.get(index).markAsDone();
+                        } catch(NumberFormatException e) {
+                            throw new DukeException("☹ OOPS!!! The argument should be a number.");
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("☹ OOPS!!! There is no task at that index.");
                         }
 
-                        // Get the index of the Task in the list of tasks
-                        int index = Integer.parseInt(commands[1]) - 1;
-
-                        // Retrieve the task and mark it as done
-                        tasks.get(index).markAsDone();
+                        // Retrieve the task and mark it as done and throw a DukeExcption if index is out of bounds
 
                         // Print a message confirming that the task is marked as done
                         console.print(
@@ -66,14 +76,27 @@ public class Duke {
                             tasks.get(index).toString()
                         );
                         break;
-                    case "list":
-                        // Throw a DukeException if there are arguments to the command
-                        if (commands.length != 1) {
-                            throw new DukeException("☹ OOPS!!! There are unknown arguments for this command.");
-                        }
+                    case "delete":
+                        // Throw a DukeException if there are wrong number of arguments for the command
+                        checkIfCorrectNumberOfArguments(commands, 1);
 
-                        // Print the list of tasks
-                        printTasks(tasks, console);
+                        // Get the index of the task in the list of tasks and remove the task
+                        // Throw a DukeException if the argument is not a number or if there is no task at given index.
+                        try {
+                            index = Integer.parseInt(commands[1]) - 1;
+                            newTask = tasks.remove(index);
+                        } catch(NumberFormatException e) {
+                            throw new DukeException("☹ OOPS!!! The argument should be a number.");
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("☹ OOPS!!! There is no task at that index.");
+                        }
+                        
+                        // Print a message confirming that the task is removed
+                        console.print(
+                            "Noted. I've removed this task: ",
+                            newTask.toString(),
+                            "Now you have " + tasks.size() + " tasks in the list."
+                        );
                         break;
                     case "todo":
                         // Throw a DukeException if there is no input
@@ -160,7 +183,27 @@ public class Duke {
         }
     }
 
-    public static void printTasks(ArrayList<Task> tasks, Console console) {
+    /**
+     * Checks if the command array has the correct number of arguments.
+     * @param commands The command array.
+     * @param correctNumberOfArguments The correct number of arguments for the command.
+     * @throws DukeException The error that is thrown when command array has the wrong number of arguments.
+     */
+    public static void checkIfCorrectNumberOfArguments(String[] commands, int correctNumberOfArguments) throws DukeException {
+        int numberOfArguments = commands.length - 1;
+        if (numberOfArguments < correctNumberOfArguments) {
+            throw new DukeException("☹ OOPS!!! Insufficient arguments for this command.");
+        } else if (numberOfArguments > correctNumberOfArguments) {
+            throw new DukeException("☹ OOPS!!! There are too many arguments for this command.");
+        }
+    }
+
+    /**
+     * Prints an list of tasks to a console.
+     * @param tasks The list of tasks to be printed.
+     * @param console The console that the list of tasks should be printed to.
+     */
+    public static void printTasks(List<Task> tasks, Console console) {
         // Create a new String array to store the lines
         String[] lines = new String[tasks.size()];
         for (int i = 0; i < tasks.size(); i++) {
