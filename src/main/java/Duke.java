@@ -33,11 +33,11 @@ public class Duke {
                 // Read the next line and trim the whitespaces around it
                 String line = sc.nextLine().trim();
 
-                // Get all commands by splitting on a whitespaces delimiter
-                String[] commands = line.split("\\s+");
+                // Get all inputs by splitting on a whitespaces delimiter
+                String[] inputs = line.split("\\s+");
 
-                // If there is no input, skip the current loop iteration and wait for another input
-                if (commands.length == 0) {
+                // If there are no inputs, skip the current loop iteration and wait for another input
+                if (inputs.length == 0) {
                     continue;
                 }
 
@@ -46,31 +46,32 @@ public class Duke {
                 Task newTask = null;
                 int index = -1;
 
-                // First command
-                String command = commands[0];
+                // First input is the command
+                String command = inputs[0];
+
                 switch(command) {
                 case "bye":
                     // Throw a DukeException if there are wrong number of arguments for the command
-                    checkIfCorrectNumberOfArguments(commands, 0);
+                    checkIfCorrectNumberOfArguments(inputs, 0);
 
                     // Print a message before closing Duke
                     console.print("Bye. Hope to see you again soon!");
                     break replLoop;
                 case "list":
                     // Throw a DukeException if there are wrong number of arguments for the command
-                    checkIfCorrectNumberOfArguments(commands, 0);
+                    checkIfCorrectNumberOfArguments(inputs, 0);
 
                     // Print the list of tasks
                     printTasks(tasks, console);
                     break;
                 case "done":
                     // Throw a DukeException if there are wrong number of arguments for the command
-                    checkIfCorrectNumberOfArguments(commands, 1);
+                    checkIfCorrectNumberOfArguments(inputs, 1);
 
                     // Get the index of the task in the list of tasks and retrieve the task
                     // Throw a DukeException if the argument is not a number or if there is no task at given index.
                     try {
-                        index = Integer.parseInt(commands[1]) - 1;
+                        index = Integer.parseInt(inputs[1]) - 1;
                         tasks.get(index).markAsDone();
                     } catch(NumberFormatException e) {
                         throw new DukeException("☹ OOPS!!! The argument should be a number.");
@@ -88,12 +89,12 @@ public class Duke {
                     break;
                 case "delete":
                     // Throw a DukeException if there are wrong number of arguments for the command
-                    checkIfCorrectNumberOfArguments(commands, 1);
+                    checkIfCorrectNumberOfArguments(inputs, 1);
 
                     // Get the index of the task in the list of tasks and remove the task
                     // Throw a DukeException if the argument is not a number or if there is no task at given index.
                     try {
-                        index = Integer.parseInt(commands[1]) - 1;
+                        index = Integer.parseInt(inputs[1]) - 1;
                         newTask = tasks.remove(index);
                     } catch(NumberFormatException e) {
                         throw new DukeException("☹ OOPS!!! The argument should be a number.");
@@ -196,12 +197,12 @@ public class Duke {
     /**
      * Checks if the command array has the correct number of arguments.
      *
-     * @param commands The command array.
+     * @param inputs The inputs array.
      * @param correctNumberOfArguments The correct number of arguments for the command.
      * @throws DukeException The error that is thrown when command array has the wrong number of arguments.
      */
-    public static void checkIfCorrectNumberOfArguments(String[] commands, int correctNumberOfArguments) throws DukeException {
-        int numberOfArguments = commands.length - 1;
+    public static void checkIfCorrectNumberOfArguments(String[] inputs, int correctNumberOfArguments) throws DukeException {
+        int numberOfArguments = inputs.length - 1;
         if (numberOfArguments < correctNumberOfArguments) {
             throw new DukeException("☹ OOPS!!! Insufficient arguments for this command.");
         } else if (numberOfArguments > correctNumberOfArguments) {
