@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import consoles.Console;
 import consoles.CliConsole;
 
+import enums.Command;
+
 import exceptions.DukeException;
 
 import tasks.Task;
@@ -46,25 +48,32 @@ public class Duke {
                 Task newTask = null;
                 int index = -1;
 
-                // First input is the command
-                String command = inputs[0];
+                // The first value in the inputs array is the command.
+                // Retrieve the command and get its enum value.
+                // Throw a DukeException if there is no corresponding enum value.
+                Command command = null;
+                try {
+                    command = Command.valueOf(inputs[0].toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
 
                 switch(command) {
-                case "bye":
+                case BYE:
                     // Throw a DukeException if there are wrong number of arguments for the command
                     checkIfCorrectNumberOfArguments(inputs, 0);
 
                     // Print a message before closing Duke
                     console.print("Bye. Hope to see you again soon!");
                     break replLoop;
-                case "list":
+                case LIST:
                     // Throw a DukeException if there are wrong number of arguments for the command
                     checkIfCorrectNumberOfArguments(inputs, 0);
 
                     // Print the list of tasks
                     printTasks(tasks, console);
                     break;
-                case "done":
+                case DONE:
                     // Throw a DukeException if there are wrong number of arguments for the command
                     checkIfCorrectNumberOfArguments(inputs, 1);
 
@@ -87,7 +96,7 @@ public class Duke {
                         tasks.get(index).toString()
                     );
                     break;
-                case "delete":
+                case DELETE:
                     // Throw a DukeException if there are wrong number of arguments for the command
                     checkIfCorrectNumberOfArguments(inputs, 1);
 
@@ -109,7 +118,7 @@ public class Duke {
                         "Now you have " + tasks.size() + " tasks in the list."
                     );
                     break;
-                case "todo":
+                case TODO:
                     // Throw a DukeException if there is no input
                     if (line.equals("todo")) {
                         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -131,7 +140,7 @@ public class Duke {
                         "Now you have " + tasks.size() + " tasks in the list."
                     );
                     break;
-                case "deadline":
+                case DEADLINE:
                     // Throw a DukeException if there is no input
                     if (line.equals("deadline")) {
                         throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -158,7 +167,7 @@ public class Duke {
                         "Now you have " + tasks.size() + " tasks in the list."
                     );
                     break;
-                case "event":
+                case EVENT:
                     // Throw a DukeException if there is no input
                     if (line.equals("event")) {
                         throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -185,8 +194,6 @@ public class Duke {
                         "Now you have " + tasks.size() + " tasks in the list."
                     );
                     break;
-                default:
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
                 console.print(e.getMessage());
