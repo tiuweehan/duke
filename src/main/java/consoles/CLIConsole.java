@@ -8,7 +8,7 @@ public class CliConsole implements Console {
      *
      * @param lines An array of messages to be wrapped.
      */
-    public void print(String ...lines) {
+    public void print(String...lines) {
         System.out.println("\t____________________________________________________________");
         for (String line: lines) {
             System.out.println("\t " + line);

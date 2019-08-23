@@ -15,7 +15,12 @@ import tasks.DeadlineTask;
 import tasks.EventTask;
 
 public class Duke {
-    public static void main(String[] args) throws DukeException {
+    /**
+     * The entry point to the Duke program.
+     *
+     * @param args The input arguments to the program.
+     */
+    public static void main(String[] args) {
         // Declare an Console interface
         Console console = new CliConsole();
 
@@ -58,7 +63,7 @@ public class Duke {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
 
-                switch(command) {
+                switch (command) {
                 case BYE:
                     // Throw a DukeException if there are wrong number of arguments for the command
                     checkIfCorrectNumberOfArguments(inputs, 0);
@@ -82,7 +87,7 @@ public class Duke {
                     try {
                         index = Integer.parseInt(inputs[1]) - 1;
                         tasks.get(index).markAsDone();
-                    } catch(NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         throw new DukeException("☹ OOPS!!! The argument should be a number.");
                     } catch (IndexOutOfBoundsException e) {
                         throw new DukeException("☹ OOPS!!! There is no task at that index.");
@@ -105,7 +110,7 @@ public class Duke {
                     try {
                         index = Integer.parseInt(inputs[1]) - 1;
                         newTask = tasks.remove(index);
-                    } catch(NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         throw new DukeException("☹ OOPS!!! The argument should be a number.");
                     } catch (IndexOutOfBoundsException e) {
                         throw new DukeException("☹ OOPS!!! There is no task at that index.");
@@ -194,6 +199,8 @@ public class Duke {
                         "Now you have " + tasks.size() + " tasks in the list."
                     );
                     break;
+                default:
+                    break;
                 }
             } catch (DukeException e) {
                 console.print(e.getMessage());
@@ -202,13 +209,16 @@ public class Duke {
     }
 
     /**
-     * Checks if the command array has the correct number of arguments.
+     * Checks if the input array has the correct number of arguments.
      *
      * @param inputs The inputs array.
      * @param correctNumberOfArguments The correct number of arguments for the command.
      * @throws DukeException The error that is thrown when command array has the wrong number of arguments.
      */
-    public static void checkIfCorrectNumberOfArguments(String[] inputs, int correctNumberOfArguments) throws DukeException {
+    public static void checkIfCorrectNumberOfArguments(
+            String[] inputs,
+            int correctNumberOfArguments
+    ) throws DukeException {
         int numberOfArguments = inputs.length - 1;
         if (numberOfArguments < correctNumberOfArguments) {
             throw new DukeException("☹ OOPS!!! Insufficient arguments for this command.");

@@ -6,5 +6,5 @@ public interface Console {
      *
      * @param lines An array of messages to be wrapped.
      */
-    public void print(String ...lines);
+    public void print(String...lines);
 }
