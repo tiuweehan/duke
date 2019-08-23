@@ -1,4 +1,6 @@
-class CLIConsole implements Console {
+package consoles;
+
+public class CLIConsole implements Console {
     /**
      * @param lines An array of messages to be wrapped.
      * Prints an output to the command line including both the wrapper and the messages,

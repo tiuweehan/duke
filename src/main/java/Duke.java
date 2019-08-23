@@ -2,6 +2,16 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
+import consoles.Console;
+import consoles.CLIConsole;
+
+import exceptions.DukeException;
+
+import tasks.Task;
+import tasks.TodoTask;
+import tasks.DeadlineTask;
+import tasks.EventTask;
+
 public class Duke {
     public static void main(String[] args) throws DukeException {
         // Declare an Console interface
