@@ -1,11 +1,12 @@
 package consoles;
 
-public class CLIConsole implements Console {
+public class CliConsole implements Console {
     /**
-     * @param lines An array of messages to be wrapped.
      * Prints an output to the command line including both the wrapper and the messages,
      * separated by a newline. The wrapper adds a line to the top and bottom of the
      * message and adds tab indentation.
+     *
+     * @param lines An array of messages to be wrapped.
      */
     public void print(String ...lines) {
         System.out.println("\t____________________________________________________________");
