@@ -43,7 +43,7 @@ public class Duke {
 
                 // Declaring and initializing variables for use in switch statement
                 String[] details = new String[] {};
-                Task newTask = new Task("");
+                Task newTask = null;
                 int index = -1;
 
                 // First command
