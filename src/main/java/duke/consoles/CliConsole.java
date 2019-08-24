@@ -1,4 +1,4 @@
-package consoles;
+package duke.consoles;
 
 public class CliConsole implements Console {
     /**

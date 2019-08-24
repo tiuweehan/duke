@@ -1,20 +1,22 @@
+package duke;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
-import consoles.Console;
-import consoles.CliConsole;
+import duke.consoles.Console;
+import duke.consoles.CliConsole;
 
-import enums.Command;
+import duke.enums.Command;
 
-import exceptions.DukeException;
+import duke.exceptions.DukeException;
 
-import tasks.Task;
-import tasks.TodoTask;
-import tasks.DeadlineTask;
-import tasks.EventTask;
+import duke.tasks.Task;
+import duke.tasks.TodoTask;
+import duke.tasks.DeadlineTask;
+import duke.tasks.EventTask;
 
-public class Duke {
+public class Main {
     /**
      * The entry point to the Duke program.
      *
