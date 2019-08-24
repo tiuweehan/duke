@@ -1,6 +1,6 @@
 package duke.enums;
 
-public enum Command {
+public enum CommandEnum {
     BYE,
     LIST,
     DONE,
