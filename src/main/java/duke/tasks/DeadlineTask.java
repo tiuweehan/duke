@@ -1,11 +1,17 @@
 package duke.tasks;
 
-public class DeadlineTask extends Task {
-    String dueDateTime;
+import duke.exceptions.DukeException;
+import duke.parser.Parser;
 
-    public DeadlineTask(String description, String dueDateTime) {
+import java.text.ParseException;
+import java.util.Date;
+
+public class DeadlineTask extends Task {
+    Date dueDateTime;
+
+    public DeadlineTask(String description, String dueDateTime) throws DukeException {
         super(description);
-        this.dueDateTime = dueDateTime;
+        this.dueDateTime = Parser.parseDateTime(dueDateTime);
     }
 
     @Override
