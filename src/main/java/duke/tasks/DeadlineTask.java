@@ -9,6 +9,14 @@ public class DeadlineTask extends Task {
     }
 
     @Override
+    public String toStorageFormat() {
+        return String.join(
+                " | ",
+                new String[] { "D", getIsDone() ? "1" : "0", super.description, dueDateTime }
+        );
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + dueDateTime + ")";
     }

@@ -6,6 +6,11 @@ public class TodoTask extends Task {
     }
 
     @Override
+    public String toStorageFormat() {
+        return String.join(" | ", new String[] { "T", getIsDone() ? "1" : "0", super.description });
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

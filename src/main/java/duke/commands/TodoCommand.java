@@ -2,14 +2,15 @@ package duke.commands;
 
 import duke.consoles.Console;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
 import duke.tasks.Task;
 import duke.tasks.TodoTask;
 
 import java.util.List;
 
 public class TodoCommand extends TaskCommand {
-    public TodoCommand(String line, Console console, List<Task> tasks) {
-        super(line, console, tasks);
+    public TodoCommand(String line, Console console, Storage storage, List<Task> tasks) {
+        super(line, console, storage, tasks);
     }
 
     @Override
@@ -27,6 +28,8 @@ public class TodoCommand extends TaskCommand {
 
         // Add the new task to the list of tasks
         tasks.add(task);
+
+        storage.store(tasks);
 
         // Print a message confirming the addition of the task
         console.print(

@@ -2,13 +2,14 @@ package duke.commands;
 
 import duke.consoles.Console;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
 import duke.tasks.Task;
 
 import java.util.List;
 
 public class DoneCommand extends TaskCommand {
-    public DoneCommand(String line, Console console, List<Task> tasks) {
-        super(line, console, tasks);
+    public DoneCommand(String line, Console console, Storage storage, List<Task> tasks) {
+        super(line, console, storage, tasks);
     }
 
     @Override
@@ -29,6 +30,8 @@ public class DoneCommand extends TaskCommand {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! There is no task at that index.");
         }
+
+        storage.store(tasks);
 
         // Print a message confirming that the task is marked as done
         console.print(
