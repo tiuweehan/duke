@@ -3,6 +3,7 @@ package duke.storage;
 import duke.exceptions.DukeException;
 import duke.tasks.DeadlineTask;
 import duke.tasks.EventTask;
+import duke.tasks.EventWithEndDateTask;
 import duke.tasks.Task;
 import duke.tasks.TodoTask;
 
@@ -50,7 +51,11 @@ public class TextStorage implements Storage {
                     task = new DeadlineTask(taskDetails[2], taskDetails[3]);
                     break;
                 case "E":
-                    task = new EventTask(taskDetails[2], taskDetails[3]);
+                    if (taskDetails.length == 4) {
+                        task = new EventTask(taskDetails[2], taskDetails[3]);
+                    } else {
+                        task = new EventWithEndDateTask(taskDetails[2], taskDetails[3], taskDetails[4]);
+                    }
                     break;
                 default:
                     throw new IOException();
@@ -61,6 +66,8 @@ public class TextStorage implements Storage {
                 tasks.add(task);
             }
             return tasks;
+        } catch (DukeException e) {
+            return new ArrayList<Task>();
         } catch (IOException e) {
             return new ArrayList<Task>();
         }

@@ -36,8 +36,17 @@ public abstract class Task {
 
     public abstract String toStorageFormat();
 
+    /**
+     * Gets the details of the task as a string.
+     *
+     * @return Details of the task as a string.
+     */
+    public String getDetails() {
+        return "[" + getStatusIcon() + "] " + description;
+    }
+
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return getDetails();
     }
 }

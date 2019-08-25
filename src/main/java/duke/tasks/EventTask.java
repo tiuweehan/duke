@@ -1,23 +1,32 @@
 package duke.tasks;
 
-public class EventTask extends Task {
-    String rangeDateTime;
+import duke.exceptions.DukeException;
+import duke.parser.Parser;
 
-    public EventTask(String description, String rangeDateTime) {
+import java.util.Date;
+
+public class EventTask extends Task {
+    protected Date startDateTime;
+
+    public EventTask(String description, String startDateTime) throws DukeException {
         super(description);
-        this.rangeDateTime = rangeDateTime;
+        this.startDateTime = Parser.parseDateTime(startDateTime);
     }
 
     @Override
     public String toStorageFormat() {
         return String.join(
             " | ",
-            new String[] { "E", getIsDone() ? "1" : "0", super.description, rangeDateTime }
+            new String[] {
+                "E",
+                getIsDone() ? "1" : "0",
+                super.description,
+                Parser.convertDateTimeToString(startDateTime) }
         );
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + rangeDateTime + ")";
+        return "[E]" + getDetails() + " (at: " + Parser.convertDateTimeToString(startDateTime) + ")";
     }
 }

@@ -35,7 +35,7 @@ public class Main {
         // Declare a scanner to read the input
         Scanner sc = new Scanner(System.in);
 
-        Storage storage = new TextStorage("./storage/storage.txt");
+        Storage storage = new TextStorage("./duke_data.txt");
 
         // Declare an array to store the list of messages
         List<Task> tasks = storage.load();

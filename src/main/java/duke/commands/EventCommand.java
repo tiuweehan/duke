@@ -4,6 +4,7 @@ import duke.consoles.Console;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.EventTask;
+import duke.tasks.EventWithEndDateTask;
 import duke.tasks.Task;
 
 import java.util.List;
@@ -28,8 +29,12 @@ public class EventCommand extends TaskCommand {
             throw new DukeException("☹ OOPS!!! The description or the date & time for this task is empty.");
         }
 
+        String[] dateTimes = details[1].split("\\s+/to\\s+", 2);
+
         // Create a new task using the information stored in details
-        Task task = new EventTask(details[0], details[1]);
+        Task task = dateTimes.length == 1
+            ? new EventTask(details[0], dateTimes[0])
+            : new EventWithEndDateTask(details[0], dateTimes[0], dateTimes[1]);
 
         // Add the new task to the list of tasks
         tasks.add(task);
