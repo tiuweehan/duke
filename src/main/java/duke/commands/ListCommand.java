@@ -2,13 +2,14 @@ package duke.commands;
 
 import duke.consoles.Console;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
 import duke.tasks.Task;
 
 import java.util.List;
 
 public class ListCommand extends TaskCommand {
-    public ListCommand(String line, Console console, List<Task> tasks) {
-        super(line, console, tasks);
+    public ListCommand(String line, Console console, Storage storage, List<Task> tasks) {
+        super(line, console, storage, tasks);
     }
 
     @Override

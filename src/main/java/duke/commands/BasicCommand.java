@@ -2,14 +2,17 @@ package duke.commands;
 
 import duke.consoles.Console;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
 
 public abstract class BasicCommand implements Command {
     protected String line;
     protected Console console;
+    protected Storage storage;
 
-    public BasicCommand(String line, Console console) {
+    protected BasicCommand(String line, Console console, Storage storage) {
         this.line = line;
         this.console = console;
+        this.storage = storage;
     }
 
     /**
@@ -31,7 +34,7 @@ public abstract class BasicCommand implements Command {
      * @param correctNumberOfArguments The correct number of arguments for the command.
      * @throws DukeException The error that is thrown when command array has the wrong number of arguments.
      */
-    public static void checkIfCorrectNumberOfArguments(
+    protected static void checkIfCorrectNumberOfArguments(
             String[] inputs,
             int correctNumberOfArguments
     ) throws DukeException {

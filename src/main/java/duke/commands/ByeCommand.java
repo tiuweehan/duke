@@ -2,10 +2,11 @@ package duke.commands;
 
 import duke.consoles.Console;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
 
 public class ByeCommand extends BasicCommand {
-    public ByeCommand(String line, Console console) {
-        super(line, console);
+    public ByeCommand(String line, Console console, Storage storage) {
+        super(line, console, storage);
     }
 
     @Override

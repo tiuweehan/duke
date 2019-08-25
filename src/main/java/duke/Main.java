@@ -1,7 +1,7 @@
 package duke;
 
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.List;
 
 import duke.commands.ByeCommand;
 import duke.commands.Command;
@@ -15,6 +15,8 @@ import duke.consoles.Console;
 import duke.consoles.CliConsole;
 import duke.enums.CommandEnum;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
+import duke.storage.TextStorage;
 import duke.tasks.Task;
 
 public class Main {
@@ -33,8 +35,10 @@ public class Main {
         // Declare a scanner to read the input
         Scanner sc = new Scanner(System.in);
 
+        Storage storage = new TextStorage("./storage/storage.txt");
+
         // Declare an array to store the list of messages
-        ArrayList<Task> tasks = new ArrayList<>();
+        List<Task> tasks = storage.load();
 
         // Read Eval Print Loop
         replLoop:
@@ -69,25 +73,25 @@ public class Main {
                 Command command = null;
                 switch (commandEnum) {
                 case BYE:
-                    command = new ByeCommand(line, console);
+                    command = new ByeCommand(line, console, storage);
                     break replLoop;
                 case LIST:
-                    command = new ListCommand(line, console, tasks);
+                    command = new ListCommand(line, console, storage, tasks);
                     break;
                 case DONE:
-                    command = new DoneCommand(line, console, tasks);
+                    command = new DoneCommand(line, console, storage, tasks);
                     break;
                 case DELETE:
-                    command = new DeleteCommand(line, console, tasks);
+                    command = new DeleteCommand(line, console, storage, tasks);
                     break;
                 case TODO:
-                    command = new TodoCommand(line, console, tasks);
+                    command = new TodoCommand(line, console, storage, tasks);
                     break;
                 case DEADLINE:
-                    command = new DeadlineCommand(line, console, tasks);
+                    command = new DeadlineCommand(line, console, storage, tasks);
                     break;
                 case EVENT:
-                    command = new EventCommand(line, console, tasks);
+                    command = new EventCommand(line, console, storage, tasks);
                     break;
                 default:
                     break;

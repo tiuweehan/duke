@@ -2,14 +2,15 @@ package duke.commands;
 
 import duke.consoles.Console;
 import duke.exceptions.DukeException;
+import duke.storage.Storage;
 import duke.tasks.DeadlineTask;
 import duke.tasks.Task;
 
 import java.util.List;
 
 public class DeadlineCommand extends TaskCommand {
-    public DeadlineCommand(String line, Console console, List<Task> tasks) {
-        super(line, console, tasks);
+    public DeadlineCommand(String line, Console console, Storage storage, List<Task> tasks) {
+        super(line, console, storage, tasks);
     }
 
     @Override
@@ -32,6 +33,7 @@ public class DeadlineCommand extends TaskCommand {
 
         // Add the new task to the list of tasks
         tasks.add(task);
+        storage.store(tasks);
 
         // Print a message confirming the addition of the task
         console.print(

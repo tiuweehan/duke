@@ -34,6 +34,8 @@ public abstract class Task {
         this.isDone = true;
     }
 
+    public abstract String toStorageFormat();
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
