@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.tasks.TaskList;
 import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
@@ -9,13 +10,13 @@ import duke.tasks.Task;
 
 import java.util.List;
 
-public class EventCommand extends TaskCommand {
-    public EventCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
-        super(line, ui, storage, tasks);
+public class EventCommand extends BasicCommand {
+    public EventCommand(String line) {
+        super(line);
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         // Throw a DukeException if there is no input
         if (line.equals("event")) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -45,7 +46,7 @@ public class EventCommand extends TaskCommand {
         ui.print(
                 "Got it. I've added this task:",
                 task.toString(),
-                "Now you have " + getNumberOfTasks() + " tasks in the list."
+                "Now you have " + tasks.size() + " tasks in the list."
         );
     }
 }

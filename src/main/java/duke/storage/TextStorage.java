@@ -5,6 +5,7 @@ import duke.tasks.DeadlineTask;
 import duke.tasks.EventTask;
 import duke.tasks.EventWithEndDateTask;
 import duke.tasks.Task;
+import duke.tasks.TaskList;
 import duke.tasks.TodoTask;
 
 import java.io.FileWriter;
@@ -23,7 +24,7 @@ public class TextStorage implements Storage {
     }
 
     @Override
-    public void store(List<Task> tasks) throws DukeException {
+    public void store(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(fileLocation);
             for (Task task : tasks) {
@@ -36,7 +37,7 @@ public class TextStorage implements Storage {
     }
 
     @Override
-    public List<Task> load() {
+    public List<Task> load() throws DukeException {
         try {
             String content = Files.readString(Paths.get(fileLocation), StandardCharsets.US_ASCII);
             List<Task> tasks = new ArrayList<Task>();
@@ -66,10 +67,8 @@ public class TextStorage implements Storage {
                 tasks.add(task);
             }
             return tasks;
-        } catch (DukeException e) {
-            return new ArrayList<Task>();
         } catch (IOException e) {
-            return new ArrayList<Task>();
+            throw new DukeException("Unable to load file");
         }
     }
 }

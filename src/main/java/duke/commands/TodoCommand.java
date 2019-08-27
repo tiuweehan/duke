@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.tasks.TaskList;
 import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
@@ -8,13 +9,13 @@ import duke.tasks.TodoTask;
 
 import java.util.List;
 
-public class TodoCommand extends TaskCommand {
-    public TodoCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
-        super(line, ui, storage, tasks);
+public class TodoCommand extends BasicCommand {
+    public TodoCommand(String line) {
+        super(line);
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         // Throw a DukeException if there is no input
         if (line.equals("todo")) {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -35,7 +36,7 @@ public class TodoCommand extends TaskCommand {
         ui.print(
                 "Got it. I've added this task:",
                 task.toString(),
-                "Now you have " + getNumberOfTasks() + " tasks in the list."
+                "Now you have " + tasks.size() + " tasks in the list."
         );
     }
 }

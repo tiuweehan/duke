@@ -1,6 +1,25 @@
 package duke.ui;
 
+import java.util.Scanner;
+
 public class CliUi implements Ui {
+    Scanner scanner;
+
+    public CliUi() {
+        scanner = new Scanner(System.in);
+    }
+
+    @Override
+    public String readCommand() {
+        return scanner.nextLine().trim();
+    }
+
+    @Override
+    public void showWelcome() {
+        this.print("Hello! I'm Duke", "What can I do for you?");
+    }
+
+    @Override
     /**
      * Prints an output to the command line including both the wrapper and the messages,
      * separated by a newline. The wrapper adds a line to the top and bottom of the

@@ -1,6 +1,16 @@
 package duke.parser;
 
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.DoneCommand;
+import duke.commands.EventCommand;
+import duke.commands.ListCommand;
+import duke.commands.TodoCommand;
+import duke.enums.CommandEnum;
 import duke.exceptions.DukeException;
+import duke.tasks.Task;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,6 +18,58 @@ import java.util.Date;
 
 public class Parser {
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+    /**
+     * Parses a String command and returns a Command object.
+     *
+     * @param line The line containing the String command.
+     * @return The Command object corresponding to the input string.
+     * @throws DukeException If the command is invalid.
+     */
+    public static Command parseCommand(String line) throws DukeException {
+        // Get all inputs by splitting on a whitespaces delimiter
+        String[] inputs = line.split("\\s+");
+
+        // If there are no inputs, skip the current loop iteration and wait for another input
+        if (inputs.length == 0) {
+            return null;
+        }
+
+        // Declaring and initializing variables for use in switch statement
+        String[] details = new String[] {};
+        Task newTask = null;
+        int index = -1;
+
+        // The first value in the inputs array is the command.
+        // Retrieve the command and get its enum value.
+        // Throw a DukeException if there is no corresponding enum value.
+        CommandEnum commandEnum = null;
+        try {
+            commandEnum = CommandEnum.valueOf(inputs[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+
+        Command command = null;
+        switch (commandEnum) {
+        case BYE:
+            return new ByeCommand(line);
+        case LIST:
+            return new ListCommand(line);
+        case DONE:
+            return new DoneCommand(line);
+        case DELETE:
+            return new DeleteCommand(line);
+        case TODO:
+            return new TodoCommand(line);
+        case DEADLINE:
+            return new DeadlineCommand(line);
+        case EVENT:
+            return new EventCommand(line);
+        default:
+            throw new DukeException("Unrecognized command");
+        }
+    }
 
     /**
      * Converts a string of format "dd/MM/yyyy HH:mm" into a java Date object.

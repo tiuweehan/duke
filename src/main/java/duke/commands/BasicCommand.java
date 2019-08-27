@@ -1,18 +1,15 @@
 package duke.commands;
 
+import duke.tasks.TaskList;
 import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 
 public abstract class BasicCommand implements Command {
     protected String line;
-    protected Ui ui;
-    protected Storage storage;
 
-    protected BasicCommand(String line, Ui ui, Storage storage) {
+    protected BasicCommand(String line) {
         this.line = line;
-        this.ui = ui;
-        this.storage = storage;
     }
 
     /**
@@ -25,7 +22,7 @@ public abstract class BasicCommand implements Command {
     }
 
     @Override
-    public abstract void execute() throws DukeException;
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Checks if the input array has the correct number of arguments.
@@ -44,5 +41,10 @@ public abstract class BasicCommand implements Command {
         } else if (numberOfArguments > correctNumberOfArguments) {
             throw new DukeException("☹ OOPS!!! There are too many arguments for this command.");
         }
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }

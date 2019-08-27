@@ -1,16 +1,17 @@
 package duke.commands;
 
+import duke.tasks.TaskList;
 import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 
 public class ByeCommand extends BasicCommand {
-    public ByeCommand(String line, Ui ui, Storage storage) {
-        super(line, ui, storage);
+    public ByeCommand(String line) {
+        super(line);
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] inputs = getInputs();
 
         // Throw a DukeException if there are wrong number of arguments for the command
@@ -18,5 +19,10 @@ public class ByeCommand extends BasicCommand {
 
         // Print a message before closing Duke
         ui.print("Bye. Hope to see you again soon!");
+    }
+
+    @Override
+    public boolean isExit() {
+        return true;
     }
 }

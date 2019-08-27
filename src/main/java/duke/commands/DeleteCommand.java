@@ -1,19 +1,18 @@
 package duke.commands;
 
+import duke.tasks.TaskList;
 import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
 
-import java.util.List;
-
-public class DeleteCommand extends TaskCommand {
-    public DeleteCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
-        super(line, ui, storage, tasks);
+public class DeleteCommand extends BasicCommand {
+    public DeleteCommand(String line) {
+        super(line);
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] inputs = getInputs();
 
         // Throw a DukeException if there are wrong number of arguments for the command
@@ -28,8 +27,6 @@ public class DeleteCommand extends TaskCommand {
             newTask = tasks.remove(index);
         } catch (NumberFormatException e) {
             throw new DukeException("☹ OOPS!!! The argument should be a number.");
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! There is no task at that index.");
         }
 
         storage.store(tasks);
