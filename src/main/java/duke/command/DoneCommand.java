@@ -1,12 +1,9 @@
-package duke.commands;
+package duke.command;
 
-import duke.tasks.TaskList;
+import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.exceptions.DukeException;
+import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.tasks.Task;
-
-import java.util.List;
 
 public class DoneCommand extends BasicCommand {
     public DoneCommand(String line) {

@@ -1,11 +1,11 @@
 package duke;
 
-import duke.commands.Command;
+import duke.command.Command;
 import duke.parser.Parser;
-import duke.tasks.TaskList;
+import duke.task.TaskList;
 import duke.ui.Ui;
 import duke.ui.CliUi;
-import duke.exceptions.DukeException;
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.storage.TextStorage;
 

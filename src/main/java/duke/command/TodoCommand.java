@@ -1,13 +1,11 @@
-package duke.commands;
+package duke.command;
 
-import duke.tasks.TaskList;
+import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.exceptions.DukeException;
+import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.tasks.Task;
-import duke.tasks.TodoTask;
-
-import java.util.List;
+import duke.task.Task;
+import duke.task.TodoTask;
 
 public class TodoCommand extends BasicCommand {
     public TodoCommand(String line) {

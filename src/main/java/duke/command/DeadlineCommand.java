@@ -1,45 +1,37 @@
-package duke.commands;
+package duke.command;
 
-import duke.tasks.TaskList;
+import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.exceptions.DukeException;
+import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.tasks.EventTask;
-import duke.tasks.EventWithEndDateTask;
-import duke.tasks.Task;
+import duke.task.DeadlineTask;
+import duke.task.Task;
 
-import java.util.List;
-
-public class EventCommand extends BasicCommand {
-    public EventCommand(String line) {
+public class DeadlineCommand extends BasicCommand {
+    public DeadlineCommand(String line) {
         super(line);
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         // Throw a DukeException if there is no input
-        if (line.equals("event")) {
-            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+        if (line.equals("deadline")) {
+            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
 
         // Split the line by a regex and store the information in the details
-        String[] details = line.split("event\\s*", 2)[1].split("\\s+/at\\s+", 2);
+        String[] details = line.split("deadline\\s*", 2)[1].split("\\s+/by\\s+", 2);
 
         // Throw a DukeException if input is invalid
         if (details.length < 2 || details[0].isEmpty() || details[1].isEmpty()) {
-            throw new DukeException("☹ OOPS!!! The description or the date & time for this task is empty.");
+            throw new DukeException("☹ OOPS!!! The description or the deadline for this task is empty.");
         }
 
-        String[] dateTimes = details[1].split("\\s+/to\\s+", 2);
-
         // Create a new task using the information stored in details
-        Task task = dateTimes.length == 1
-            ? new EventTask(details[0], dateTimes[0])
-            : new EventWithEndDateTask(details[0], dateTimes[0], dateTimes[1]);
+        Task task = new DeadlineTask(details[0], details[1]);
 
         // Add the new task to the list of tasks
         tasks.add(task);
-
         storage.store(tasks);
 
         // Print a message confirming the addition of the task

@@ -1,6 +1,6 @@
-package duke.tasks;
+package duke.task;
 
-import duke.exceptions.DukeException;
+import duke.exception.DukeException;
 
 import java.util.ArrayList;
 import java.util.Iterator;

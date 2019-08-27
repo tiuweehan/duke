@@ -1,8 +1,8 @@
-package duke.commands;
+package duke.command;
 
-import duke.tasks.TaskList;
+import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.exceptions.DukeException;
+import duke.exception.DukeException;
 import duke.storage.Storage;
 
 public class ListCommand extends BasicCommand {

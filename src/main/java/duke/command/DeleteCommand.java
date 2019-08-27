@@ -1,10 +1,10 @@
-package duke.commands;
+package duke.command;
 
-import duke.tasks.TaskList;
+import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.exceptions.DukeException;
+import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.tasks.Task;
+import duke.task.Task;
 
 public class DeleteCommand extends BasicCommand {
     public DeleteCommand(String line) {
