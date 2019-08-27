@@ -1,6 +1,6 @@
-package duke.consoles;
+package duke.ui;
 
-public class CliConsole implements Console {
+public class CliUi implements Ui {
     /**
      * Prints an output to the command line including both the wrapper and the messages,
      * separated by a newline. The wrapper adds a line to the top and bottom of the

@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.consoles.Console;
+import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -8,8 +8,8 @@ import duke.tasks.Task;
 import java.util.List;
 
 public class DoneCommand extends TaskCommand {
-    public DoneCommand(String line, Console console, Storage storage, List<Task> tasks) {
-        super(line, console, storage, tasks);
+    public DoneCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
+        super(line, ui, storage, tasks);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class DoneCommand extends TaskCommand {
         storage.store(tasks);
 
         // Print a message confirming that the task is marked as done
-        console.print(
+        ui.print(
                 "Nice! I've marked this task as done: ",
                 tasks.get(index).toString()
         );

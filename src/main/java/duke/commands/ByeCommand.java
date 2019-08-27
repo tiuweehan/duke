@@ -1,12 +1,12 @@
 package duke.commands;
 
-import duke.consoles.Console;
+import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 
 public class ByeCommand extends BasicCommand {
-    public ByeCommand(String line, Console console, Storage storage) {
-        super(line, console, storage);
+    public ByeCommand(String line, Ui ui, Storage storage) {
+        super(line, ui, storage);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class ByeCommand extends BasicCommand {
         checkIfCorrectNumberOfArguments(inputs,0);
 
         // Print a message before closing Duke
-        console.print("Bye. Hope to see you again soon!");
+        ui.print("Bye. Hope to see you again soon!");
     }
 }

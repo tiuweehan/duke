@@ -11,15 +11,15 @@ import duke.commands.DoneCommand;
 import duke.commands.EventCommand;
 import duke.commands.ListCommand;
 import duke.commands.TodoCommand;
-import duke.consoles.Console;
-import duke.consoles.CliConsole;
+import duke.ui.Ui;
+import duke.ui.CliUi;
 import duke.enums.CommandEnum;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.storage.TextStorage;
 import duke.tasks.Task;
 
-public class Main {
+public class Duke {
     /**
      * The entry point to the Duke program.
      *
@@ -27,10 +27,10 @@ public class Main {
      */
     public static void main(String[] args) {
         // Declare an Console interface
-        Console console = new CliConsole();
+        Ui ui = new CliUi();
 
         // Print the introduction
-        console.print("Hello! I'm Duke", "What can I do for you?");
+        ui.print("Hello! I'm Duke", "What can I do for you?");
 
         // Declare a scanner to read the input
         Scanner sc = new Scanner(System.in);
@@ -73,25 +73,25 @@ public class Main {
                 Command command = null;
                 switch (commandEnum) {
                 case BYE:
-                    command = new ByeCommand(line, console, storage);
+                    command = new ByeCommand(line, ui, storage);
                     break replLoop;
                 case LIST:
-                    command = new ListCommand(line, console, storage, tasks);
+                    command = new ListCommand(line, ui, storage, tasks);
                     break;
                 case DONE:
-                    command = new DoneCommand(line, console, storage, tasks);
+                    command = new DoneCommand(line, ui, storage, tasks);
                     break;
                 case DELETE:
-                    command = new DeleteCommand(line, console, storage, tasks);
+                    command = new DeleteCommand(line, ui, storage, tasks);
                     break;
                 case TODO:
-                    command = new TodoCommand(line, console, storage, tasks);
+                    command = new TodoCommand(line, ui, storage, tasks);
                     break;
                 case DEADLINE:
-                    command = new DeadlineCommand(line, console, storage, tasks);
+                    command = new DeadlineCommand(line, ui, storage, tasks);
                     break;
                 case EVENT:
-                    command = new EventCommand(line, console, storage, tasks);
+                    command = new EventCommand(line, ui, storage, tasks);
                     break;
                 default:
                     break;
@@ -100,7 +100,7 @@ public class Main {
                 // Execute the command
                 command.execute();
             } catch (DukeException e) {
-                console.print(e.getMessage());
+                ui.print(e.getMessage());
             }
         }
     }

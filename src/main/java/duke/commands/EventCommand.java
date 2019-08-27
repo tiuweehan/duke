@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.consoles.Console;
+import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.EventTask;
@@ -10,8 +10,8 @@ import duke.tasks.Task;
 import java.util.List;
 
 public class EventCommand extends TaskCommand {
-    public EventCommand(String line, Console console, Storage storage, List<Task> tasks) {
-        super(line, console, storage, tasks);
+    public EventCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
+        super(line, ui, storage, tasks);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class EventCommand extends TaskCommand {
         storage.store(tasks);
 
         // Print a message confirming the addition of the task
-        console.print(
+        ui.print(
                 "Got it. I've added this task:",
                 task.toString(),
                 "Now you have " + getNumberOfTasks() + " tasks in the list."

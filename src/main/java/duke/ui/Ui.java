@@ -1,6 +1,6 @@
-package duke.consoles;
+package duke.ui;
 
-public interface Console {
+public interface Ui {
     /**
      * Prints an output to the console.
      *

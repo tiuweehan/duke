@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.consoles.Console;
+import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -8,8 +8,8 @@ import duke.tasks.Task;
 import java.util.List;
 
 public class DeleteCommand extends TaskCommand {
-    public DeleteCommand(String line, Console console, Storage storage, List<Task> tasks) {
-        super(line, console, storage, tasks);
+    public DeleteCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
+        super(line, ui, storage, tasks);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class DeleteCommand extends TaskCommand {
         storage.store(tasks);
 
         // Print a message confirming that the task is removed
-        console.print(
+        ui.print(
                 "Noted. I've removed this task: ",
                 newTask.toString(),
                 "Now you have " + tasks.size() + " tasks in the list."

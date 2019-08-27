@@ -1,17 +1,17 @@
 package duke.commands;
 
-import duke.consoles.Console;
+import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 
 public abstract class BasicCommand implements Command {
     protected String line;
-    protected Console console;
+    protected Ui ui;
     protected Storage storage;
 
-    protected BasicCommand(String line, Console console, Storage storage) {
+    protected BasicCommand(String line, Ui ui, Storage storage) {
         this.line = line;
-        this.console = console;
+        this.ui = ui;
         this.storage = storage;
     }
 

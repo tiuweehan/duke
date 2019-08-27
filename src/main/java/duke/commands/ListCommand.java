@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.consoles.Console;
+import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -8,8 +8,8 @@ import duke.tasks.Task;
 import java.util.List;
 
 public class ListCommand extends TaskCommand {
-    public ListCommand(String line, Console console, Storage storage, List<Task> tasks) {
-        super(line, console, storage, tasks);
+    public ListCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
+        super(line, ui, storage, tasks);
     }
 
     @Override
@@ -20,22 +20,22 @@ public class ListCommand extends TaskCommand {
         checkIfCorrectNumberOfArguments(inputs, 0);
 
         // Print the list of tasks
-        printTasks(tasks, console);
+        printTasks(tasks, ui);
     }
 
     /**
-     * Prints an list of tasks to a console.
+     * Prints an list of tasks to a ui.
      *
      * @param tasks The list of tasks to be printed.
-     * @param console The console that the list of tasks should be printed to.
+     * @param ui The ui that the list of tasks should be printed to.
      */
-    protected static void printTasks(List<Task> tasks, Console console) {
+    protected static void printTasks(List<Task> tasks, Ui ui) {
         // Create a new String array to store the lines
         String[] lines = new String[tasks.size()];
         for (int i = 0; i < tasks.size(); i++) {
             // Each line is prefixed with the item number
             lines[i] = (i + 1) + "." + tasks.get(i);
         }
-        console.print(lines);
+        ui.print(lines);
     }
 }

@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.consoles.Console;
+import duke.ui.Ui;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
@@ -10,8 +10,8 @@ import java.util.List;
 public abstract class TaskCommand extends BasicCommand {
     protected List<Task> tasks;
 
-    public TaskCommand(String line, Console console, Storage storage, List<Task> tasks) {
-        super(line, console, storage);
+    public TaskCommand(String line, Ui ui, Storage storage, List<Task> tasks) {
+        super(line, ui, storage);
         this.tasks = tasks;
     }
 
