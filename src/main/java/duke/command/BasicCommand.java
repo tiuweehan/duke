@@ -24,6 +24,9 @@ public abstract class BasicCommand implements Command {
     @Override
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
+    @Override
+    public abstract void validate() throws DukeException;
+
     /**
      * Checks if the input array has the correct number of arguments.
      *

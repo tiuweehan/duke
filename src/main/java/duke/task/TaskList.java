@@ -17,6 +17,10 @@ public class TaskList implements Iterable<Task> {
         this.tasks = new ArrayList<Task>(tasks);
     }
 
+    public TaskList(TaskList tasks) {
+        this.tasks = new ArrayList<Task>(tasks.tasks);
+    }
+
     public void add(Task task) {
         this.tasks.add(task);
     }

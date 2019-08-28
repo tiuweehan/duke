@@ -6,16 +6,22 @@ import duke.exception.DukeException;
 import duke.storage.Storage;
 
 public class DoneCommand extends BasicCommand {
-    public DoneCommand(String line) {
+    public DoneCommand(String line) throws DukeException {
         super(line);
+        validate();
+    }
+
+    @Override
+    public void validate() throws DukeException {
+        String[] inputs = getInputs();
+
+        // Throw a DukeException if there are wrong number of arguments for the command
+        checkIfCorrectNumberOfArguments(inputs, 1);
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] inputs = getInputs();
-
-        // Throw a DukeException if there are wrong number of arguments for the command
-        checkIfCorrectNumberOfArguments(inputs, 1);
 
         // Get the index of the task in the list of tasks and retrieve the task
         // Throw a DukeException if the argument is not a number or if there is no task at given index.

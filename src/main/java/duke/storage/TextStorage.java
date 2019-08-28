@@ -37,7 +37,7 @@ public class TextStorage implements Storage {
     }
 
     @Override
-    public List<Task> load() throws DukeException {
+    public TaskList load() throws DukeException {
         try {
             String content = Files.readString(Paths.get(fileLocation), StandardCharsets.US_ASCII);
             List<Task> tasks = new ArrayList<Task>();
@@ -66,7 +66,7 @@ public class TextStorage implements Storage {
                 }
                 tasks.add(task);
             }
-            return tasks;
+            return new TaskList(tasks);
         } catch (IOException e) {
             throw new DukeException("Unable to load file");
         }
