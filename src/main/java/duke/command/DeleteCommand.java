@@ -18,6 +18,12 @@ public class DeleteCommand extends BasicCommand {
 
         // Throw a DukeException if there are wrong number of arguments for the command
         checkIfCorrectNumberOfArguments(inputs, 1);
+
+        try {
+            Integer.parseInt(inputs[1]);
+        } catch (NumberFormatException e) {
+            throw new DukeException("☹ OOPS!!! The argument should be a number.");
+        }
     }
 
     @Override
@@ -25,22 +31,15 @@ public class DeleteCommand extends BasicCommand {
         String[] inputs = getInputs();
 
         // Get the index of the task in the list of tasks and remove the task
-        // Throw a DukeException if the argument is not a number or if there is no task at given index.
-        Task newTask = null;
-        int index = -1;
-        try {
-            index = Integer.parseInt(inputs[1]) - 1;
-            newTask = tasks.remove(index);
-        } catch (NumberFormatException e) {
-            throw new DukeException("☹ OOPS!!! The argument should be a number.");
-        }
+        int index = Integer.parseInt(inputs[1]) - 1;
+        Task task = tasks.remove(index);
 
         storage.store(tasks);
 
         // Print a message confirming that the task is removed
         ui.print(
                 "Noted. I've removed this task: ",
-                newTask.toString(),
+                task.toString(),
                 "Now you have " + tasks.size() + " tasks in the list."
         );
     }

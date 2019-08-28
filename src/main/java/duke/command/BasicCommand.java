@@ -35,8 +35,8 @@ public abstract class BasicCommand implements Command {
      * @throws DukeException The error that is thrown when command array has the wrong number of arguments.
      */
     protected static void checkIfCorrectNumberOfArguments(
-            String[] inputs,
-            int correctNumberOfArguments
+        String[] inputs,
+        int correctNumberOfArguments
     ) throws DukeException {
         int numberOfArguments = inputs.length - 1;
         if (numberOfArguments < correctNumberOfArguments) {

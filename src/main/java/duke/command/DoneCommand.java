@@ -17,6 +17,12 @@ public class DoneCommand extends BasicCommand {
 
         // Throw a DukeException if there are wrong number of arguments for the command
         checkIfCorrectNumberOfArguments(inputs, 1);
+
+        try {
+            Integer.parseInt(inputs[1]);
+        } catch (NumberFormatException e) {
+            throw new DukeException("☹ OOPS!!! The argument should be a number.");
+        }
     }
 
     @Override
@@ -25,13 +31,8 @@ public class DoneCommand extends BasicCommand {
 
         // Get the index of the task in the list of tasks and retrieve the task
         // Throw a DukeException if the argument is not a number or if there is no task at given index.
-        int index = -1;
-        try {
-            index = Integer.parseInt(inputs[1]) - 1;
-            tasks.markAsDone(index);
-        } catch (NumberFormatException e) {
-            throw new DukeException("☹ OOPS!!! The argument should be a number.");
-        }
+        int index = Integer.parseInt(inputs[1]) - 1;
+        tasks.markAsDone(index);
 
         storage.store(tasks);
 

@@ -31,6 +31,8 @@ public class DeadlineCommand extends BasicCommand {
         if (details.length < 2 || details[0].isEmpty() || details[1].isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description or the deadline for this task is empty.");
         }
+
+        Task task = new DeadlineTask(details[0], details[1]);
     }
 
     @Override
