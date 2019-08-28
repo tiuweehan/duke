@@ -4,7 +4,7 @@ import duke.exception.DukeException;
 import duke.task.TaskList;
 
 public interface Storage {
-    public void store(TaskList tasks) throws DukeException;
+    void store(TaskList tasks) throws DukeException;
 
-    public TaskList load() throws DukeException;
+    TaskList load() throws DukeException;
 }

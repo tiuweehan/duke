@@ -48,9 +48,9 @@ public class DeadlineCommand extends BasicCommand {
 
         // Print a message confirming the addition of the task
         ui.print(
-                "Got it. I've added this task:",
-                task.toString(),
-                "Now you have " + tasks.size() + " tasks in the list."
+            "Got it. I've added this task:",
+            task.toString(),
+            "Now you have " + tasks.size() + " tasks in the list."
         );
     }
 }

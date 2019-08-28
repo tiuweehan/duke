@@ -38,9 +38,9 @@ public class DeleteCommand extends BasicCommand {
 
         // Print a message confirming that the task is removed
         ui.print(
-                "Noted. I've removed this task: ",
-                task.toString(),
-                "Now you have " + tasks.size() + " tasks in the list."
+            "Noted. I've removed this task: ",
+            task.toString(),
+            "Now you have " + tasks.size() + " tasks in the list."
         );
     }
 }

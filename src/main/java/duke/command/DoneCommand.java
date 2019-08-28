@@ -38,8 +38,8 @@ public class DoneCommand extends BasicCommand {
 
         // Print a message confirming that the task is marked as done
         ui.print(
-                "Nice! I've marked this task as done: ",
-                tasks.get(index).toString()
+            "Nice! I've marked this task as done: ",
+            tasks.get(index).toString()
         );
     }
 }

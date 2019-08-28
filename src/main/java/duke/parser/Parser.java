@@ -10,7 +10,6 @@ import duke.command.ListCommand;
 import duke.command.TodoCommand;
 import duke.enums.CommandEnum;
 import duke.exception.DukeException;
-import duke.task.Task;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,11 +34,6 @@ public class Parser {
             return null;
         }
 
-        // Declaring and initializing variables for use in switch statement
-        String[] details = new String[] {};
-        Task newTask = null;
-        int index = -1;
-
         // The first value in the inputs array is the command.
         // Retrieve the command and get its enum value.
         // Throw a DukeException if there is no corresponding enum value.
@@ -50,7 +44,6 @@ public class Parser {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
 
-        Command command = null;
         switch (commandEnum) {
         case BYE:
             return new ByeCommand(line);
