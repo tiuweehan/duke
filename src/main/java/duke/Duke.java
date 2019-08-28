@@ -30,7 +30,7 @@ public class Duke {
     }
 
     /**
-     * The method to run the duke program.
+     * Runs the duke program.
      */
     public void run() {
         ui.showWelcome();

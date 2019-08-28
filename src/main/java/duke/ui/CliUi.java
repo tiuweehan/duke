@@ -2,6 +2,9 @@ package duke.ui;
 
 import java.util.Scanner;
 
+/**
+ * A command line implementation of the user interface interacting with the Duke Program.
+ */
 public class CliUi implements Ui {
     Scanner scanner;
 

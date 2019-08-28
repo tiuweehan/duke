@@ -5,12 +5,18 @@ import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
+/**
+ * The command used to mark a task in the Duke Program as done.
+ */
 public class DoneCommand extends BasicCommand {
     public DoneCommand(String line) throws DukeException {
         super(line);
         validate();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void validate() throws DukeException {
         String[] inputs = getInputs();
@@ -25,6 +31,9 @@ public class DoneCommand extends BasicCommand {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] inputs = getInputs();

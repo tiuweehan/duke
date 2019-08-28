@@ -5,6 +5,9 @@ import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
+/**
+ * The abstract class that all Commands in the Duke Program inherit from.
+ */
 public abstract class BasicCommand implements Command {
     protected String line;
 
@@ -21,9 +24,15 @@ public abstract class BasicCommand implements Command {
         return this.line.split("\\s+");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public abstract void validate() throws DukeException;
 
@@ -46,6 +55,9 @@ public abstract class BasicCommand implements Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExit() {
         return false;

@@ -5,6 +5,9 @@ import duke.parser.Parser;
 
 import java.util.Date;
 
+/**
+ *  A task which contains information about an Event with only a start date and time.
+ */
 public class EventTask extends Task {
     protected Date startDateTime;
 
@@ -13,6 +16,9 @@ public class EventTask extends Task {
         this.startDateTime = Parser.parseDateTime(startDateTime);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toStorageFormat() {
         return String.join(
@@ -25,6 +31,9 @@ public class EventTask extends Task {
         );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[E]" + getDetails() + " (at: " + Parser.convertDateTimeToString(startDateTime) + ")";

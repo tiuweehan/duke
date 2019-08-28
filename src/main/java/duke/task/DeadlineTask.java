@@ -5,6 +5,9 @@ import duke.parser.Parser;
 
 import java.util.Date;
 
+/**
+ * A task which has a deadline in the Duke Program.
+ */
 public class DeadlineTask extends Task {
     Date dueDateTime;
 
@@ -13,6 +16,9 @@ public class DeadlineTask extends Task {
         this.dueDateTime = Parser.parseDateTime(dueDateTime);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toStorageFormat() {
         return String.join(
@@ -26,6 +32,9 @@ public class DeadlineTask extends Task {
         );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + Parser.convertDateTimeToString(dueDateTime) + ")";

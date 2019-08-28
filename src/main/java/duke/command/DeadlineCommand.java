@@ -7,16 +7,27 @@ import duke.storage.Storage;
 import duke.task.DeadlineTask;
 import duke.task.Task;
 
+/**
+ * The command used to create a deadline task in the Duke Program.
+ */
 public class DeadlineCommand extends BasicCommand {
     public DeadlineCommand(String line) throws DukeException {
         super(line);
         validate();
     }
 
+    /**
+     * Gets the details of the command as an array of strings.
+     *
+     * @return an array of strings, the first element being the description and the second element being the deadline.
+     */
     public String[] getDetails() {
         return super.line.split("deadline\\s*", 2)[1].split("\\s+/by\\s+", 2);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void validate() throws DukeException {
         // Throw a DukeException if there is no input
@@ -35,6 +46,9 @@ public class DeadlineCommand extends BasicCommand {
         Task task = new DeadlineTask(details[0], details[1]);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] details = getDetails();

@@ -5,6 +5,9 @@ import duke.parser.Parser;
 
 import java.util.Date;
 
+/**
+ * A task which contains information about an Event with both start and end dates and times.
+ */
 public class EventWithEndDateTask extends EventTask {
     protected Date endDateTime;
 
@@ -24,6 +27,9 @@ public class EventWithEndDateTask extends EventTask {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toStorageFormat() {
         return String.join(
@@ -38,6 +44,9 @@ public class EventWithEndDateTask extends EventTask {
         );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[E]" + getDetails() + " (from: "
