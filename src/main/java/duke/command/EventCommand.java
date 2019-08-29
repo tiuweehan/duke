@@ -8,16 +8,27 @@ import duke.task.EventTask;
 import duke.task.EventWithEndDateTask;
 import duke.task.Task;
 
+/**
+ * The command used to create an event task in the Duke Program.
+ */
 public class EventCommand extends BasicCommand {
     public EventCommand(String line) throws DukeException {
         super(line);
         validate();
     }
 
+    /**
+     * Gets the details of the command as an array of strings.
+     *
+     * @return an array of strings, the first element being the description and the second being the event dates.
+     */
     public String[] getDetails() {
         return line.split("event\\s*", 2)[1].split("\\s+/at\\s+", 2);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void validate() throws DukeException {
         // Throw a DukeException if there is no input
@@ -34,6 +45,9 @@ public class EventCommand extends BasicCommand {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] details = getDetails();

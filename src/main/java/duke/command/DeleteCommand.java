@@ -6,12 +6,18 @@ import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
 
+/**
+ * The command used to delete tasks from the Duke Program.
+ */
 public class DeleteCommand extends BasicCommand {
     public DeleteCommand(String line) throws DukeException {
         super(line);
         validate();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void validate() throws DukeException {
         String[] inputs = getInputs();
@@ -26,6 +32,9 @@ public class DeleteCommand extends BasicCommand {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String[] inputs = getInputs();

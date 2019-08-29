@@ -16,6 +16,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Storage for the Duke program that stores information in a text file.
+ */
 public class TextStorage implements Storage {
     protected String fileLocation;
 
@@ -23,6 +26,9 @@ public class TextStorage implements Storage {
         this.fileLocation = fileLocation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void store(TaskList tasks) throws DukeException {
         try {
@@ -36,6 +42,9 @@ public class TextStorage implements Storage {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TaskList load() throws DukeException {
         try {

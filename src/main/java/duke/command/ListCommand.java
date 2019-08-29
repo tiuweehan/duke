@@ -5,12 +5,18 @@ import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
+/**
+ * The command used to list all the tasks in the Duke Program.
+ */
 public class ListCommand extends BasicCommand {
     public ListCommand(String line) throws DukeException {
         super(line);
         validate();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void validate() throws DukeException {
         String[] inputs = getInputs();
@@ -19,6 +25,9 @@ public class ListCommand extends BasicCommand {
         checkIfCorrectNumberOfArguments(inputs, 0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         // Print the list of tasks

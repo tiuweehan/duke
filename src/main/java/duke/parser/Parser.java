@@ -16,6 +16,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * The Parser that converts strings to objects and vice-versa in the Duke Program.
+ */
 public class Parser {
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
@@ -86,6 +89,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a Date object into a string in the format specified in DATE_FORMATTER.
+     *
+     * @param date The date to be converted to a string.
+     * @return A string containing a formatted date.
+     */
     public static String convertDateTimeToString(Date date) {
         return DATE_FORMATTER.format(date);
     }

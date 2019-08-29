@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A list of tasks in the Duke Program.
+ */
 public class TaskList implements Iterable<Task> {
     protected List<Task> tasks;
 
@@ -21,6 +24,11 @@ public class TaskList implements Iterable<Task> {
         this.tasks = new ArrayList<Task>(tasks.tasks);
     }
 
+    /**
+     * Adds a task to the list of tasks.
+     *
+     * @param task The task to be added to the list of tasks.
+     */
     public void add(Task task) {
         this.tasks.add(task);
     }
@@ -55,10 +63,21 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Marks a task at a given index in the list of tasks as done.
+     *
+     * @param index The index of the task in the task list that should be marked as done.
+     * @throws DukeException If there is not task at the given index.
+     */
     public void markAsDone(int index) throws DukeException {
         get(index).markAsDone();
     }
 
+    /**
+     * Gets the number of tasks in the list of tasks.
+     *
+     * @return The number of tasks in the list of tasks.
+     */
     public int size() {
         return tasks.size();
     }

@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Contains information about a task in the Duke Program.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -34,6 +37,11 @@ public abstract class Task {
         this.isDone = true;
     }
 
+    /**
+     * Converts the task to a suitable string format for storage.
+     *
+     * @return The task in a suitable string format for storage.
+     */
     public abstract String toStorageFormat();
 
     /**
