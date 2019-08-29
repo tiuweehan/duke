@@ -1,7 +1,7 @@
 package duke.task;
 
 import duke.exception.DukeException;
-import duke.parser.Parser;
+import duke.util.Parser;
 
 import java.util.Date;
 
