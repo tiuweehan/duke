@@ -13,7 +13,7 @@ public interface Storage {
      * @param tasks The list of tasks to be stored.
      * @throws DukeException If the process of storing the list of tasks fails.
      */
-    public void store(TaskList tasks) throws DukeException;
+    void store(TaskList tasks) throws DukeException;
 
     /**
      * Loads and returns a list of tasks from the storage.
@@ -21,5 +21,5 @@ public interface Storage {
      * @return The list of task of tasks from the storage
      * @throws DukeException If the process of loading the list of tasks fails.
      */
-    public TaskList load() throws DukeException;
+    TaskList load() throws DukeException;
 }
