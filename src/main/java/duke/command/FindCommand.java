@@ -7,12 +7,18 @@ import duke.util.PrintFormatter;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
+/**
+ * The command used to find tasks with a keyword.
+ */
 public class FindCommand extends BasicCommand {
     public FindCommand(String line) throws DukeException {
         super(line);
         validate();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void validate() throws DukeException {
         String[] inputs = getInputs();
@@ -21,6 +27,9 @@ public class FindCommand extends BasicCommand {
         checkIfCorrectNumberOfArguments(inputs, 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         // Retrieve the keyword
