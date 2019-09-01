@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.task.TaskList;
-import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.EventTask;
@@ -49,7 +48,7 @@ public class EventCommand extends BasicCommand {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         String[] details = getDetails();
 
         String[] dateTimes = details[1].split("\\s+/to\\s+", 2);
@@ -64,11 +63,11 @@ public class EventCommand extends BasicCommand {
 
         storage.store(tasks);
 
-        // Print a message confirming the addition of the task
-        ui.print(
+        // Return the messages confirming the addition of the task
+        return new String[]{
             "Got it. I've added this task:",
             task.toString(),
             "Now you have " + tasks.size() + " tasks in the list."
-        );
+        };
     }
 }

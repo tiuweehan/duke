@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.task.TaskList;
-import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
@@ -36,7 +35,7 @@ public class DeleteCommand extends BasicCommand {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         String[] inputs = getInputs();
 
         // Get the index of the task in the list of tasks and remove the task
@@ -45,11 +44,11 @@ public class DeleteCommand extends BasicCommand {
 
         storage.store(tasks);
 
-        // Print a message confirming that the task is removed
-        ui.print(
+        // Return the messages confirming the deletion of the task
+        return new String[]{
             "Noted. I've removed this task: ",
             task.toString(),
             "Now you have " + tasks.size() + " tasks in the list."
-        );
+        };
     }
 }
