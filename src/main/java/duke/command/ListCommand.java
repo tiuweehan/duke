@@ -1,8 +1,7 @@
 package duke.command;
 
 import duke.task.TaskList;
-import duke.ui.Ui;
-import duke.util.PrintFormatter;
+import duke.util.Formatter;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
@@ -30,8 +29,8 @@ public class ListCommand extends BasicCommand {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        // Print the list of tasks
-        PrintFormatter.printTasks(tasks, ui);
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
+        // Return the formatted list of tasks
+        return Formatter.formatTasks(tasks);
     }
 }

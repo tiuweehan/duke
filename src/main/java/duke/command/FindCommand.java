@@ -2,8 +2,7 @@ package duke.command;
 
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
-import duke.util.PrintFormatter;
+import duke.util.Formatter;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
@@ -31,7 +30,7 @@ public class FindCommand extends BasicCommand {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         // Retrieve the keyword
         String keyword = getInputs()[1];
 
@@ -43,7 +42,7 @@ public class FindCommand extends BasicCommand {
             }
         }
 
-        // Print the list of tasks
-        PrintFormatter.printTasks(filteredTasks, ui);
+        // Return the formatted list of tasks
+        return Formatter.formatTasks(filteredTasks);
     }
 }

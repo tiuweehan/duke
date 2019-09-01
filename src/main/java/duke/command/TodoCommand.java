@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.task.TaskList;
-import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
@@ -40,7 +39,7 @@ public class TodoCommand extends BasicCommand {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         // Split the line by a regex and store the information in the details
         String[] details = getDetails();
 
@@ -52,11 +51,11 @@ public class TodoCommand extends BasicCommand {
 
         storage.store(tasks);
 
-        // Print a message confirming the addition of the task
-        ui.print(
+        // Return the messages confirming the addition of the task
+        return new String[]{
             "Got it. I've added this task:",
             task.toString(),
             "Now you have " + tasks.size() + " tasks in the list."
-        );
+        };
     }
 }

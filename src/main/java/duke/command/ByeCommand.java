@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.task.TaskList;
-import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
@@ -29,9 +28,9 @@ public class ByeCommand extends BasicCommand {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        // Print a message before closing Duke
-        ui.print("Bye. Hope to see you again soon!");
+    public String[] execute(TaskList tasks, Storage storage) {
+        // Return a message before closing Duke
+        return new String[] { "Bye. Hope to see you again soon!" };
     }
 
     /**

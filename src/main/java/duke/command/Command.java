@@ -13,7 +13,17 @@ public interface Command {
      * Executes the command.
      *
      * @param tasks The list of tasks the command should act on.
-     * @param ui The UI that the command interacts with.
+     * @param storage The Storage that the command should act on.
+     * @return The output of the command as a String array.
+     * @throws DukeException If command fails to execute to completion.
+     */
+    String[] execute(TaskList tasks, Storage storage) throws DukeException;
+
+    /**
+     * Executes the command.
+     *
+     * @param tasks The list of tasks the command should act on.
+     * @param ui The ui that the result of the command should be directed to.
      * @param storage The Storage that the command should act on.
      * @throws DukeException If command fails to execute to completion.
      */

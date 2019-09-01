@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.task.TaskList;
-import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 
@@ -35,7 +34,7 @@ public class DoneCommand extends BasicCommand {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String[] execute(TaskList tasks, Storage storage) throws DukeException {
         String[] inputs = getInputs();
 
         // Get the index of the task in the list of tasks and retrieve the task
@@ -45,10 +44,10 @@ public class DoneCommand extends BasicCommand {
 
         storage.store(tasks);
 
-        // Print a message confirming that the task is marked as done
-        ui.print(
+        // Return the messages confirming the completion of the task
+        return new String[] {
             "Nice! I've marked this task as done: ",
             tasks.get(index).toString()
-        );
+        };
     }
 }

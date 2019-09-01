@@ -1,15 +1,15 @@
-package duke;
+package duke.program;
 
 import duke.command.Command;
+import duke.ui.cli.CliUi;
 import duke.util.Parser;
 import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.ui.CliUi;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.storage.TextStorage;
 
-public class Duke {
+public class DukeCli {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -19,7 +19,7 @@ public class Duke {
      *
      * @param filepath The filepath of the storage file.
      */
-    public Duke(String filepath) {
+    public DukeCli(String filepath) {
         ui = new CliUi();
         storage = new TextStorage(filepath);
         try {
@@ -62,12 +62,8 @@ public class Duke {
         }
     }
 
-    /**
-     * The entry point to the Duke program.
-     *
-     * @param args The input arguments to the program.
-     */
+
     public static void main(String[] args) {
-        (new Duke("./duke_data.txt")).run();
+
     }
 }
