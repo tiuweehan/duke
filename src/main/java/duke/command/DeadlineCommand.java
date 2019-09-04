@@ -50,6 +50,9 @@ public class DeadlineCommand extends BasicCommand {
      */
     @Override
     public String[] execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null : "tasks cannot be null";
+        assert storage != null : "storage cannot be null";
+
         String[] details = getDetails();
 
         // Create a new task using the information stored in details

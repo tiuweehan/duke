@@ -49,6 +49,9 @@ public class EventCommand extends BasicCommand {
      */
     @Override
     public String[] execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null : "tasks cannot be null";
+        assert storage != null : "storage cannot be null";
+
         String[] details = getDetails();
 
         String[] dateTimes = details[1].split("\\s+/to\\s+", 2);

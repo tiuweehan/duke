@@ -30,6 +30,9 @@ public class ListCommand extends BasicCommand {
      */
     @Override
     public String[] execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null : "tasks cannot be null";
+        assert storage != null : "storage cannot be null";
+
         // Return the formatted list of tasks
         return Formatter.formatTasks(tasks);
     }
