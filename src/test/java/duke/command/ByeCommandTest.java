@@ -34,7 +34,7 @@ public class ByeCommandTest {
         Storage storage = new StorageStub(tasks);
 
         Command command = new ByeCommand("Bye");
-        command.execute(tasks, ui, storage);
+        ui.print(command.execute(tasks, storage));
     }
 
     @Test

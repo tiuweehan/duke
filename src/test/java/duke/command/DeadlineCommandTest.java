@@ -5,8 +5,6 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.task.DeadlineTask;
-import duke.task.Task;
 import duke.ui.UiStub;
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +63,7 @@ public class DeadlineCommandTest {
         });
 
         Command command = new DeadlineCommand("deadline report /by 22/12/2019 18:00");
-        command.execute(tasks, ui, storage);
+        ui.print(command.execute(tasks, storage));
     }
 
     @Test

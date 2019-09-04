@@ -3,7 +3,6 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * The abstract class that all Commands in the Duke Program inherit from.
@@ -29,14 +28,6 @@ public abstract class BasicCommand implements Command {
      */
     @Override
     public abstract String[] execute(TaskList tasks, Storage storage) throws DukeException;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        ui.print(execute(tasks, storage));
-    }
 
     /**
      * {@inheritDoc}

@@ -1,15 +1,8 @@
 package duke.command;
 
-import duke.storage.StorageStub;
-import duke.task.TaskList;
-import duke.ui.Ui;
 import duke.exception.DukeException;
-import duke.storage.Storage;
-import duke.task.Task;
-import duke.ui.UiStub;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteCommandTest {

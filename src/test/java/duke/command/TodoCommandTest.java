@@ -1,12 +1,10 @@
 package duke.command;
 
+import duke.exception.DukeException;
+import duke.storage.Storage;
 import duke.storage.StorageStub;
 import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.exception.DukeException;
-import duke.storage.Storage;
-import duke.task.Task;
-import duke.task.TodoTask;
 import duke.ui.UiStub;
 import org.junit.jupiter.api.Test;
 
@@ -34,14 +32,14 @@ public class TodoCommandTest {
         Storage storage = new StorageStub(tasks);
         Ui ui = new UiStub("", (String[] testPrint) -> {
             assertArrayEquals(testPrint, new String[] {
-                    "Got it. I've added this task:",
-                    "[T][✘] write report",
-                    "Now you have 1 tasks in the list."
+                "Got it. I've added this task:",
+                "[T][✘] write report",
+                "Now you have 1 tasks in the list."
             });
         });
 
         Command command = new TodoCommand("todo write report");
-        command.execute(tasks, ui, storage);
+        ui.print(command.execute(tasks, storage));
     }
 
     @Test
