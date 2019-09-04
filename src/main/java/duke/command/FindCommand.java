@@ -1,10 +1,11 @@
 package duke.command;
 
+import duke.exception.DukeException;
+import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Formatter;
-import duke.exception.DukeException;
-import duke.storage.Storage;
+
 
 /**
  * The command used to find tasks with a keyword.

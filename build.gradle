@@ -30,6 +30,8 @@ test {
     useJUnitPlatform()
 }
 
+test.outputs.upToDateWhen {false}
+
 group 'seedu.duke'
 version '0.1.0'
 
