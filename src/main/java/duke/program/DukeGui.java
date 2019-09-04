@@ -38,6 +38,7 @@ public class DukeGui extends Application {
     public void start(Stage stage) {
         // Get the storage filepath from the parameters
         List<String> params = getParameters().getRaw();
+        assert params.size() > 0 : "Insufficient arguments supplied";
         String filepath = params.get(0);
 
         // Retrieve the storage and the list of tasks

@@ -17,10 +17,12 @@ public class TaskList implements Iterable<Task> {
     }
 
     public TaskList(List<Task> tasks) {
+        assert tasks != null : "tasks cannot be null";
         this.tasks = new ArrayList<Task>(tasks);
     }
 
     public TaskList(TaskList tasks) {
+        assert tasks != null : "tasks cannot be null";
         this.tasks = new ArrayList<Task>(tasks.tasks);
     }
 
@@ -30,6 +32,7 @@ public class TaskList implements Iterable<Task> {
      * @param task The task to be added to the list of tasks.
      */
     public void add(Task task) {
+        assert task != null : "task cannot be null";
         this.tasks.add(task);
     }
 

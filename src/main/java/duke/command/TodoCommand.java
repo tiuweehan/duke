@@ -40,6 +40,9 @@ public class TodoCommand extends BasicCommand {
      */
     @Override
     public String[] execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null : "tasks cannot be null";
+        assert storage != null : "storage cannot be null";
+
         // Split the line by a regex and store the information in the details
         String[] details = getDetails();
 

@@ -31,6 +31,9 @@ public class FindCommand extends BasicCommand {
      */
     @Override
     public String[] execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null : "tasks cannot be null";
+        assert storage != null : "storage cannot be null";
+
         // Retrieve the keyword
         String keyword = getInputs()[1];
 

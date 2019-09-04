@@ -29,6 +29,9 @@ public class ByeCommand extends BasicCommand {
      */
     @Override
     public String[] execute(TaskList tasks, Storage storage) {
+        assert tasks != null : "tasks cannot be null";
+        assert storage != null : "storage cannot be null";
+
         // Return a message before closing Duke
         return new String[] { "Bye. Hope to see you again soon!" };
     }

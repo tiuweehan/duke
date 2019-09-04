@@ -36,6 +36,9 @@ public class DeleteCommand extends BasicCommand {
      */
     @Override
     public String[] execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null : "tasks cannot be null";
+        assert storage != null : "storage cannot be null";
+
         String[] inputs = getInputs();
 
         // Get the index of the task in the list of tasks and remove the task

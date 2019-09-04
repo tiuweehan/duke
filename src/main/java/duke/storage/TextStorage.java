@@ -8,6 +8,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TodoTask;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -23,6 +24,7 @@ public class TextStorage implements Storage {
     protected String fileLocation;
 
     public TextStorage(String fileLocation) {
+        assert (new File(fileLocation)).exists() : "File location does not exist";
         this.fileLocation = fileLocation;
     }
 
@@ -55,21 +57,25 @@ public class TextStorage implements Storage {
                 Task task = null;
                 switch (taskDetails[0]) {
                 case "T":
+                    assert taskDetails.length == 3 : "Error reading task details";
                     task = new TodoTask(taskDetails[2]);
                     break;
                 case "D":
+                    assert taskDetails.length == 4 : "Error reading task details";
                     task = new DeadlineTask(taskDetails[2], taskDetails[3]);
                     break;
                 case "E":
+                    assert taskDetails.length == 4 || taskDetails.length == 5 : "Error reading task details";
                     if (taskDetails.length == 4) {
                         task = new EventTask(taskDetails[2], taskDetails[3]);
-                    } else {
+                    } else if (taskDetails.length == 5) {
                         task = new EventWithEndDateTask(taskDetails[2], taskDetails[3], taskDetails[4]);
                     }
                     break;
                 default:
                     throw new IOException();
                 }
+                assert taskDetails[1].equals("1") || taskDetails[1].equals("0") : "Error reading task details";
                 if (taskDetails[1].equals("1")) {
                     task.markAsDone();
                 }
