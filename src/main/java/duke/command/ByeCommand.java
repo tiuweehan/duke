@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.task.TaskList;
 import duke.exception.DukeException;
 import duke.storage.Storage;
+import duke.task.TaskList;
 
 /**
  * The command used to exit the Duke Program.

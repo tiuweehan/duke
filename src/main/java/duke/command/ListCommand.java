@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.task.TaskList;
-import duke.util.Formatter;
 import duke.exception.DukeException;
 import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.util.Formatter;
 
 /**
  * The command used to list all the tasks in the Duke Program.

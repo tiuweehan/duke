@@ -1,13 +1,13 @@
 package duke.program;
 
 import duke.command.Command;
-import duke.ui.cli.CliUi;
-import duke.util.Parser;
-import duke.task.TaskList;
-import duke.ui.Ui;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.storage.TextStorage;
+import duke.task.TaskList;
+import duke.ui.cli.CliUi;
+import duke.ui.Ui;
+import duke.util.Parser;
 
 public class DukeCli {
     private Storage storage;

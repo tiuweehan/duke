@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.task.TaskList;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * The command used to delete tasks from the Duke Program.
