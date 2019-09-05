@@ -7,6 +7,7 @@ import duke.task.EventWithEndDateTask;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TodoTask;
+import duke.task.TodoWithDateRangeTask;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -57,8 +58,12 @@ public class TextStorage implements Storage {
                 Task task = null;
                 switch (taskDetails[0]) {
                 case "T":
-                    assert taskDetails.length == 3 : "Error reading task details";
-                    task = new TodoTask(taskDetails[2]);
+                    assert taskDetails.length == 3 || taskDetails.length == 5 : "Error reading task details";
+                    if (taskDetails.length == 3) {
+                        task = new TodoTask(taskDetails[2]);
+                    } else {
+                        task = new TodoWithDateRangeTask(taskDetails[2], taskDetails[3], taskDetails[4]);
+                    }
                     break;
                 case "D":
                     assert taskDetails.length == 4 : "Error reading task details";

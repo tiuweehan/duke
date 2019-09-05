@@ -5,6 +5,7 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TodoTask;
+import duke.task.TodoWithDateRangeTask;
 
 /**
  * The command used to create a todo task in the Duke Program.
@@ -46,8 +47,21 @@ public class TodoCommand extends BasicCommand {
         // Split the line by a regex and store the information in the details
         String[] details = getDetails();
 
+        String[] extraDetails = details[1].split("\\s+/between\\s+", 2);
+
         // Create a new task using the information stored in details
-        Task task = new TodoTask(details[1]);
+        Task task = null;
+        if (extraDetails.length == 1) {
+            task = new TodoTask(extraDetails[0]);
+        } else {
+            String[] dateRangeDetails =  extraDetails[1].split("\\s+/and\\s+");
+            if (dateRangeDetails.length == 1) {
+                throw new DukeException("Invalid format");
+            } else {
+                task = new TodoWithDateRangeTask(extraDetails[0], dateRangeDetails[0], dateRangeDetails[1]);
+            }
+        }
+
 
         // Add the new task to the list of tasks
         tasks.add(task);
