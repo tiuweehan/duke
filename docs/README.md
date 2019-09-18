@@ -1,5 +1,8 @@
 # Duke User Guide
 
+## User Interface
+![](Ui.png)
+
 ## Features 
 
 ### Task Management
