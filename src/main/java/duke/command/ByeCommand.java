@@ -32,6 +32,15 @@ public class ByeCommand extends BasicCommand {
         assert tasks != null : "tasks cannot be null";
         assert storage != null : "storage cannot be null";
 
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+                System.exit(0);
+            } catch (InterruptedException e) {
+                System.exit(0);
+            }
+        }).start();
+
         // Return a message before closing Duke
         return new String[] { "Bye. Hope to see you again soon!" };
     }
